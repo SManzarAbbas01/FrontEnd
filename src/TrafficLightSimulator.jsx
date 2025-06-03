@@ -1,56 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+
 const TrafficLightSimulator = () => {
+  const [currentLight, setCurrentLight] = useState("red");
 
-  
+ 
   return (
-    
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 font-sans">
-      {/* Title of the simulator */}
-      <h1 className="text-4xl font-bold text-gray-800 mb-8 mt-4">Traffic Light Simulator</h1>
-
-      {/* Traffic light casing */}
-      <div className="bg-gray-900 rounded-2xl p-4 shadow-2xl flex flex-col items-center space-y-4">
-        {
-        }
+    <div style={styles.container}>
+      <h2 style={styles.title}>Traffic Light Simulator</h2>
+      <div style={styles.trafficLight}>
         <div
-          className={`
-            w-24 h-24 rounded-full transition-all duration-500 ease-in-out
-            ${currentLight === 'red' ? 'bg-red-500 shadow-red-glow' : 'bg-red-900 opacity-30'}
-          `}
-          aria-label="Red light"
+          style={{
+            ...styles.light,
+            ...styles.red,
+            ...(currentLight === "red" ? styles.active : {}),
+          }}
         ></div>
         <div
-          className={`
-            w-24 h-24 rounded-full transition-all duration-500 ease-in-out
-            ${currentLight === 'yellow' ? 'bg-yellow-400 shadow-yellow-glow' : 'bg-yellow-900 opacity-30'}
-          `}
-          aria-label="Yellow light"
+          style={{
+            ...styles.light,
+            ...styles.yellow,
+            ...(currentLight === "yellow" ? styles.active : {}),
+          }}
         ></div>
         <div
-          className={`
-            w-24 h-24 rounded-full transition-all duration-500 ease-in-out
-            ${currentLight === 'green' ? 'bg-green-500 shadow-green-glow' : 'bg-green-900 opacity-30'}
-          `}
-          aria-label="Green light"
+          style={{
+            ...styles.light,
+            ...styles.green,
+            ...(currentLight === "green" ? styles.active : {}),
+          }}
         ></div>
       </div>
-
-      {}
-      {}
-      <style>{`
-        /* Custom glow effects for active lights */
-        .shadow-red-glow {
-          box-shadow: 0 0 40px 15px rgba(239, 68, 68, 0.8), 0 0 60px 20px rgba(239, 68, 68, 0.6);
-        }
-        .shadow-yellow-glow {
-          box-shadow: 0 0 40px 15px rgba(250, 204, 21, 0.8), 0 0 60px 20px rgba(250, 204, 21, 0.6);
-        }
-        .shadow-green-glow {
-          box-shadow: 0 0 40px 15px rgba(34, 197, 94, 0.8), 0 0 60px 20px rgba(34, 197, 94, 0.6);
-        }
-      `}</style>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    backgroundColor: "#1e1e1e",
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#ffffff",
+    fontFamily: "Arial, sans-serif",
+  },
+  title: {
+    marginBottom: "20px",
+  },
+  trafficLight: {
+    backgroundColor: "#2f2f2f",
+    padding: "20px",
+    borderRadius: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+    boxShadow: "0 0 20px rgba(0,0,0,0.5)",
+  },
+  light: {
+    width: "80px",
+    height: "80px",
+    borderRadius: "50%",
+    backgroundColor: "#555",
+    transition: "background-color 0.5s, box-shadow 0.5s",
+  },
+  red: {
+    backgroundColor: "#440000",
+  },
+  yellow: {
+    backgroundColor: "#444000",
+  },
+  green: {
+    backgroundColor: "#004400",
+  },
+  active: {
+    boxShadow: "0 0 20px 10px currentColor",
+    filter: "brightness(1.5)",
+  },
 };
 
 export default TrafficLightSimulator;
