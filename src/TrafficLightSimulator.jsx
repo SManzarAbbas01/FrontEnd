@@ -3,6 +3,17 @@ import React, { useState, useEffect } from "react";
 const TrafficLightSimulator = () => {
   const [currentLight, setCurrentLight] = useState("red");
 
+ useEffect(() => {
+    const lights = ["red", "yellow", "green"];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % lights.length;
+      setCurrentLight(lights[index]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
  
   return (
     <div style={styles.container}>
